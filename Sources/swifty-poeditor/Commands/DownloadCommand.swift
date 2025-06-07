@@ -31,12 +31,12 @@ class DownloadCommand: Command, PrettyOutput {
         var id: String?
         @Option(name: "language", short: "l", help: "POEditor language code for the localization that should be exported and downloaded. Default value is \(Constants.Defaults.language)")
         var language: String?
-        @Option(name: "destination", short: "d", help: "Destination file path, where donwloaded localization should be saved")
+        @Option(name: "destination", short: "d", help: "Destination file path, where downloaded localization should be saved")
         var destination: String?
         @Option(name: "export-type", short: "e", help: "In which format localization should be exported from POEditor. Default value s \(Constants.Defaults.exportType.rawValue)")
         var exportType: String?
         
-        @Flag(name: "yes", short: "y", help: "Automaticly say \"yes\" in every y/n question. E.g for the parsed settings validation")
+        @Flag(name: "yes", short: "y", help: "Automatically say \"yes\" in every y/n question. E.g for the parsed settings validation")
         var yesForAll: Bool
         
         @Flag(name: "short-output", short: "s", help: "Disables printing unnecessary information and disables colored output")
@@ -225,7 +225,7 @@ class DownloadCommand: Command, PrettyOutput {
         }
     }
     
-    /// request on POEditor API download URL for specified langugage
+    /// request on POEditor API download URL for specified language
     /// - Parameter settings: parsed settings
     /// - Parameter context: current console context
     private func requestLocalizationDownloadURL(with settings: DownloadSettings, context: CommandContext) throws -> String {

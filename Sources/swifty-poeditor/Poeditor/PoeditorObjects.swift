@@ -7,11 +7,15 @@
 
 import Foundation
 
+/// Export file format type
 enum PoeditorExportType: String, Codable, CaseIterable {
     case appleStrings = "apple_strings"
     case androidStrings = "android_strings"
     case keyValueJSON = "key_value_json"
-    case po, pot, mo, xls, xlsx, csv, ini, resw, resx, xliff, properties, json, yml, xmb, xtb
+    case arb, po, pot, mo, xls, xlsx, csv, ini, resw, resx, xliff, xcstrings, properties
+    case ts, json, i18next, yml, xlf, xmb, xtb
+    case xliff1_2 = "xliff_1_2"
+    case rise360xliff = "rise_360_xliff"
 }
 
 /// status of POEditor API requests
@@ -33,7 +37,7 @@ enum PoeditorResponseCodeType: String, Codable {
     case invalidAPICall = "404"
     case customErrorMessage = "4040"
     case dataShouldBeJSON = "4042"
-    case wrongLangugageCode = "4043"
+    case wrongLanguageCode = "4043"
     case projectNotContainingSpecifiedLanguage = "4044"
     case noLanguageSpecified = "4045"
     case unableToParseFile = "4046"
@@ -54,7 +58,7 @@ struct PoeditorResponse: Codable {
     let message: String
 }
 
-/// Terms list paylod
+/// Terms list payload
 struct Terms: Codable {
     struct Term: Codable {
         struct Translation: Codable {
@@ -91,13 +95,13 @@ struct DeletedTerms: Codable {
 }
 
 
-/// Insertation result
+/// Insertion result
 struct AddResult: Codable {
     let parsed: Int
     let added: Int
 }
 
-/// Terms insertation payload wrapper
+/// Terms insertion payload wrapper
 struct AddedTerms: Codable {
     let terms: AddResult
 }

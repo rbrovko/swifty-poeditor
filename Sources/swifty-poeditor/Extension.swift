@@ -20,7 +20,7 @@ extension String {
     }
 }
 
-protocol PrettyOutput: class {
+protocol PrettyOutput: AnyObject {
     var shortOutput: Bool { get set }
     var currentLoadingBar: ActivityIndicator<LoadingBar>? { get set }
     
