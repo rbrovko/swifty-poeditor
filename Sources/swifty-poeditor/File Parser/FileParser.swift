@@ -107,7 +107,7 @@ class FileParser {
     
     // MARK: - Private methods
     
-    /// recursively iteratet over nested enums and compose localization keys
+    /// recursively iterate over nested enums and compose localization keys
     /// - Parameter members: enum child members
     /// - Parameter rootPath: enum current level path
     private func composeContext(members: [Member], rootPath: String) throws {
@@ -147,18 +147,18 @@ class FileParser {
         }
         // iterate over founded sub-enums
         for statement in enums {
-            var nestedRooPath: String
+            var nestedRootPath: String
             
             switch statement.name {
             case .name(let name), .backtickedName(let name):
                 // get enum name and append it to current path. It will generate next nested level context path
-                nestedRooPath = rootPath.isEmpty == true ? name : rootPath + "." + name
+                nestedRootPath = rootPath.isEmpty == true ? name : rootPath + "." + name
             default:
                 // something that we can`t parse
                 throw FileParserError.unknownEnumIdentifier(statement)
             }
             // run parsing for next deeper level
-            try composeContext(members: statement.members, rootPath: nestedRooPath)
+            try composeContext(members: statement.members, rootPath: nestedRootPath)
         }
     }
 }

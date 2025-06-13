@@ -25,7 +25,7 @@ class UploadCommand: Command, PrettyOutput {
     
     /// describes allowed params with their description in current command
     struct Signature: CommandSignature {
-        @Option(name: "path", short: "p", help: "Path to the Swift file (e.g I18m.swift) that containt localization enum")
+        @Option(name: "path", short: "p", help: "Path to the Swift file (e.g I18m.swift) that contains localization enum")
         var path: String?
         @Option(name: "name", short: "n", help: "Custom localization enum name. Default value is \(Constants.Defaults.enumName)")
         var name: String?
@@ -40,7 +40,7 @@ class UploadCommand: Command, PrettyOutput {
         @Option(name: "delete-removals", short: "d", help: "Sync removals (this option enable or disable deleting remote terms that where removed locally). Default value is \(Constants.Defaults.deleteRemovals.boolValue)")
         var deleteRemovals: Bool?
         
-        @Flag(name: "yes", short: "y", help: "Automaticly say \"yes\" in every y/n question. E.g for the parsed settings validation")
+        @Flag(name: "yes", short: "y", help: "Automatically say \"yes\" in every y/n question. E.g for the parsed settings validation")
         var yesForAll: Bool
         
         @Flag(name: "short-output", short: "s", help: "Disables printing unnecessary information and disables colored output")
@@ -51,7 +51,7 @@ class UploadCommand: Command, PrettyOutput {
     
     /// diff result wrapper
     struct TermsDifference {
-        let insertations: [String]
+        let insertions: [String]
         let removals: [String]
     }
     
@@ -92,7 +92,7 @@ class UploadCommand: Command, PrettyOutput {
             // try to delete terms that was removed
             try deleteTermsIfNeeded(terms: difference.removals, settings: settings, context: context)
             // try to upload new terms
-            try addTermsIfNeeded(terms: difference.insertations, settings: settings, context: context)
+            try addTermsIfNeeded(terms: difference.insertions, settings: settings, context: context)
         } catch {
             // show fail result in console
             currentLoadingBar?.fail()
@@ -156,9 +156,9 @@ class UploadCommand: Command, PrettyOutput {
         }
         // use provided language or use default (optional param)
         let language: String = signature.language ?? Constants.Defaults.language
-        // use provded mode or use default configuration
+        // use provided mode or use default configuration
         let lowercasedMode = signature.lowercased ?? Constants.Defaults.lowercasedMode.boolValue
-        // use provded mode or use default configuration
+        // use provided mode or use default configuration
         let deleteRemovals = signature.deleteRemovals ?? Constants.Defaults.deleteRemovals.boolValue
         // compose settings structure
         let parserSettings: ParserSettings = ParserSettings(path: path,
@@ -226,7 +226,7 @@ class UploadCommand: Command, PrettyOutput {
         }
     }
     
-    /// parse locslization enum swift file
+    /// parse localization enum swift file
     /// - Parameter settings: parsed settings
     /// - Parameter context: current console context
     private func parseLocalizationFile(with settings: UploadSettings, context: CommandContext) throws -> [String] {
@@ -265,8 +265,8 @@ class UploadCommand: Command, PrettyOutput {
     private func findDifferences(localTerms: [String], remoteTerms: [String], context: CommandContext) throws -> TermsDifference {
         if #available(OSX 10.15, *) {
             let difference = localTerms.sorted().difference(from: remoteTerms.sorted())
-            // get insertations
-            let insertations = difference.insertions.compactMap { element -> String? in
+            // get insertions
+            let insertions = difference.insertions.compactMap { element -> String? in
                 switch element {
                 case .insert(_, let element, _):
                     return element
@@ -284,16 +284,16 @@ class UploadCommand: Command, PrettyOutput {
                 }
             }
             
-            return TermsDifference(insertations: insertations, removals: removals)
+            return TermsDifference(insertions: insertions, removals: removals)
         } else {
             printToConsole(context: context, string: "findDifferences: Fallback on earlier versions of macOS", style: .warning)
             
             let diff = Set(remoteTerms).symmetricDifference(localTerms)
-            // find diff via set and then decompose result into insertations and removals
-            let insertations = diff.filter { remoteTerms.contains($0) == false }
+            // find diff via set and then decompose result into insertions and removals
+            let insertions = diff.filter { remoteTerms.contains($0) == false }
             let removals = diff.filter { localTerms.contains($0) == false }
             
-            return TermsDifference(insertations: Array(insertations), removals: Array(removals))
+            return TermsDifference(insertions: Array(insertions), removals: Array(removals))
         }
     }
     
@@ -307,7 +307,7 @@ class UploadCommand: Command, PrettyOutput {
             printToConsole(context: context, string: "Delete terms option disabled by settings. Please check --help for details.", style: .info)
             return
         }
-        // check for terms existance
+        // check for terms existence
         guard terms.isEmpty == false else {
             printToConsole(context: context, string: "No terms for removal found.", style: .info)
             return
@@ -348,9 +348,9 @@ class UploadCommand: Command, PrettyOutput {
     /// - Parameter settings: parsed settings
     /// - Parameter context: current console context
     private func addTermsIfNeeded(terms: [String], settings: UploadSettings, context: CommandContext) throws {
-        // check for terms existance
+        // check for terms existence
         guard terms.isEmpty == false else {
-            printToConsole(context: context, string: "No terms for insertation found.", style: .info)
+            printToConsole(context: context, string: "No terms for insertion found.", style: .info)
             return
         }
         // print terms that should be deleted
