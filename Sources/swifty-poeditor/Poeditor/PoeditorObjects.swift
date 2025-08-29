@@ -61,19 +61,7 @@ struct PoeditorResponse: Codable {
 /// Terms list payload
 struct Terms: Codable {
     struct Term: Codable {
-        struct Translation: Codable {
-            let content: String
-            let fuzzy: Int
-            let updated: Date?
-        }
-        
-        let term, context, plural: String
-        let created: Date
-        let updated: Date?
-        let reference: String
-        let tags: [String]
-        let comment: String
-        let translation: Translation?
+        let term: String
     }
     
     let terms: [Term]
