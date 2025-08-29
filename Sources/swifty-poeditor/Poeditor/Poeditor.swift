@@ -187,7 +187,7 @@ class Poeditor {
         return promise.futureResult
     }
     
-    /// returns future result with insertation info
+    /// returns future result with insertion info
     /// - Parameter terms: array of values that should be inserted
     func addTerms(terms: [TermValue]) -> EventLoopFuture<AddResult> {
         // create promise to return future result
