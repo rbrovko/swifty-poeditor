@@ -3,6 +3,19 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+Use sections 'Added', 'Changed', 'Fixed', 'Removed', 'Work In Progress', 'Security', 'Deprecated', 'Dependencies'.
+
+## [Unreleased] - yyyy-mm-dd
+
+### Added
+- Added support new export file format types: arb, xcstrings, ts, i18next, xlf, xliff_1_2 and rise_360_xliff
+
+### Fixed
+- fix build
+- fix JSONDecodable when retrieving all terms with support plural
+
+### Dependencies
+- use fork swift-ast with fix build - rename Expression to ASTExpression. [issue](https://github.com/yanagiba/swift-ast/issues/111) and (PR)[https://github.com/yanagiba/swift-ast/pull/112]
 
 ## [1.0.4] - 2020-09-16
 ### Changed
