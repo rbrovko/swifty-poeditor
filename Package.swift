@@ -11,7 +11,7 @@ let package = Package(
         .executable(name: "swifty-poeditor", targets: ["swifty-poeditor"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/rbrovko/swift-ast.git", from: "0.19.11"),
+        .package(url: "https://github.com/yanagiba/swift-ast.git", from: "0.19.10"),
         .package(url: "https://github.com/vapor/console-kit.git", from: "4.0.0"),
         .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.0.0")
     ],

@@ -83,7 +83,7 @@ class FileParser {
                 continue
             }
             // switch statement used in order to avoid creation of custom Equatable extension.
-            // (not compiling via terminal swift build, baybe some swift 5.1 bug)
+            // (not compiling via terminal swift build, maybe some swift 5.1 bug)
             switch enumStatement.name {
             case .name(let name), .backtickedName(let name):
                 guard name == settings.enumName else {
