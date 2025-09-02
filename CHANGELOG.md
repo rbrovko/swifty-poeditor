@@ -15,7 +15,7 @@ Use sections 'Added', 'Changed', 'Fixed', 'Removed', 'Work In Progress', 'Securi
 - fix JSONDecodable when retrieving all terms with support plural
 
 ### Dependencies
-- use fork swift-ast with fix build - rename Expression to ASTExpression. [issue](https://github.com/yanagiba/swift-ast/issues/111) and (PR)[https://github.com/yanagiba/swift-ast/pull/112]
+- Update swift-ast to 0.19.10
 
 ## [1.0.4] - 2020-09-16
 ### Changed
